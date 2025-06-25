@@ -143,3 +143,9 @@ type ImageBase struct {
 	Width       int     `json:"width"`
 	VoteMetrics
 }
+
+type AlternativeTitle struct {
+	Iso3166_1 string `json:"iso_3166_1"`
+	Title     string `json:"title"`
+	Type      string `json:"type"`
+}
