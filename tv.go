@@ -9,35 +9,7 @@ import (
 
 // TVDetails type is a struct for details JSON response.
 type TVDetails struct {
-	BackdropPath        string              `json:"backdrop_path"`
-	CreatedBy           []CreatedBy         `json:"created_by"`
-	EpisodeRunTime      []int               `json:"episode_run_time"`
-	FirstAirDate        string              `json:"first_air_date"`
-	Genres              []Genre             `json:"genres"`
-	Homepage            string              `json:"homepage"`
-	ID                  int64               `json:"id"`
-	InProduction        bool                `json:"in_production"`
-	Languages           []string            `json:"languages"`
-	LastAirDate         string              `json:"last_air_date"`
-	Name                string              `json:"name"`
-	LastEpisodeToAir    LastEpisodeToAir    `json:"last_episode_to_air"`
-	NextEpisodeToAir    NextEpisodeToAir    `json:"next_episode_to_air"`
-	Networks            []Network           `json:"networks"`
-	NumberOfEpisodes    int                 `json:"number_of_episodes"`
-	NumberOfSeasons     int                 `json:"number_of_seasons"`
-	OriginCountry       []string            `json:"origin_country"`
-	OriginalLanguage    string              `json:"original_language"`
-	OriginalName        string              `json:"original_name"`
-	Overview            string              `json:"overview"`
-	Popularity          float32             `json:"popularity"`
-	PosterPath          string              `json:"poster_path"`
-	ProductionCompanies []ProductionCompany `json:"production_companies"`
-	ProductionCountries []ProductionCountry `json:"production_countries"`
-	Seasons             []Season            `json:"seasons"`
-	Status              string              `json:"status"`
-	Tagline             string              `json:"tagline"`
-	Type                string              `json:"type"`
-	VoteMetrics
+	TVShowDetailsItem
 	*TVAggregateCreditsAppend
 	*TVAlternativeTitlesAppend
 	*TVChangesAppend

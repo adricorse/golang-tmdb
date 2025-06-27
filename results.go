@@ -19,38 +19,12 @@ type AccountCreatedListsResults struct {
 // release date, poster and backdrop paths, popularity metrics, genre IDs, and flags
 // indicating whether the movie is for adults or contains video content.
 type MovieResult struct {
-	ID               int64   `json:"id"`
-	Title            string  `json:"title"`
-	OriginalTitle    string  `json:"original_title"`
-	OriginalLanguage string  `json:"original_language"`
-	Overview         string  `json:"overview"`
-	ReleaseDate      string  `json:"release_date"`
-	PosterPath       string  `json:"poster_path"`
-	BackdropPath     string  `json:"backdrop_path"`
-	Popularity       float32 `json:"popularity"`
-	GenreIDs         []int64 `json:"genre_ids"`
-	Adult            bool    `json:"adult"`
-	Video            bool    `json:"video"`
-	VoteMetrics
+	MovieMedia
 }
 
 // AccountFavoriteMoviesResults Result Types
 type AccountFavoriteMoviesResults struct {
-	Results []struct {
-		Adult            bool    `json:"adult"`
-		BackdropPath     string  `json:"backdrop_path"`
-		GenreIDs         []int   `json:"genre_ids"`
-		ID               int64   `json:"id"`
-		OriginalLanguage string  `json:"original_language"`
-		OriginalTitle    string  `json:"original_title"`
-		Overview         string  `json:"overview"`
-		ReleaseDate      string  `json:"release_date"`
-		PosterPath       string  `json:"poster_path"`
-		Popularity       float64 `json:"popularity"`
-		Title            string  `json:"title"`
-		Video            bool    `json:"video"`
-		VoteMetrics
-	} `json:"results"`
+	Results []Movie `json:"results"`
 }
 
 // TVShowResult represents the details of a TV show as returned by the TMDB API.
@@ -74,20 +48,7 @@ type TVShowResult struct {
 
 // AccountFavoriteTVShowsResults Result Types
 type AccountFavoriteTVShowsResults struct {
-	Results []struct {
-		BackdropPath     string   `json:"backdrop_path"`
-		FirstAirDate     string   `json:"first_air_date"`
-		GenreIDs         []int64  `json:"genre_ids"`
-		ID               int64    `json:"id"`
-		OriginalLanguage string   `json:"original_language"`
-		OriginalName     string   `json:"original_name"`
-		Overview         string   `json:"overview"`
-		OriginCountry    []string `json:"origin_country"`
-		PosterPath       string   `json:"poster_path"`
-		Popularity       float64  `json:"popularity"`
-		Name             string   `json:"name"`
-		VoteMetrics
-	} `json:"results"`
+	Results []TVShow `json:"results"`
 }
 
 // AccountRatedTVEpisodesResults Result Types
@@ -349,21 +310,7 @@ type MovieWatchProvidersResults struct {
 
 // MovieRecommendationsResults Result Types
 type MovieRecommendationsResults struct {
-	Results []struct {
-		PosterPath       string  `json:"poster_path"`
-		Adult            bool    `json:"adult"`
-		Overview         string  `json:"overview"`
-		ReleaseDate      string  `json:"release_date"`
-		GenreIDs         []int64 `json:"genre_ids"`
-		ID               int64   `json:"id"`
-		OriginalTitle    string  `json:"original_title"`
-		OriginalLanguage string  `json:"original_language"`
-		Title            string  `json:"title"`
-		BackdropPath     string  `json:"backdrop_path"`
-		Popularity       float32 `json:"popularity"`
-		Video            bool    `json:"video"`
-		VoteMetrics
-	} `json:"results"`
+	Results []Movie `json:"results"`
 }
 
 // MovieReviewsResults Result Types
@@ -392,40 +339,12 @@ type MovieListsResults struct {
 
 // MovieNowPlayingResults Result Types
 type MovieNowPlayingResults struct {
-	Results []struct {
-		PosterPath       string  `json:"poster_path"`
-		Adult            bool    `json:"adult"`
-		Overview         string  `json:"overview"`
-		ReleaseDate      string  `json:"release_date"`
-		Genres           []Genre `json:"genres"`
-		ID               int64   `json:"id"`
-		OriginalTitle    string  `json:"original_title"`
-		OriginalLanguage string  `json:"original_language"`
-		Title            string  `json:"title"`
-		BackdropPath     string  `json:"backdrop_path"`
-		Popularity       float32 `json:"popularity"`
-		Video            bool    `json:"video"`
-		VoteMetrics
-	} `json:"results"`
+	Results []Movie `json:"results"`
 }
 
 // MoviePopularResults Result Types
 type MoviePopularResults struct {
-	Results []struct {
-		PosterPath       string  `json:"poster_path"`
-		Adult            bool    `json:"adult"`
-		Overview         string  `json:"overview"`
-		ReleaseDate      string  `json:"release_date"`
-		Genres           []Genre `json:"genres"`
-		ID               int64   `json:"id"`
-		OriginalTitle    string  `json:"original_title"`
-		OriginalLanguage string  `json:"original_language"`
-		Title            string  `json:"title"`
-		BackdropPath     string  `json:"backdrop_path"`
-		Popularity       float32 `json:"popularity"`
-		Video            bool    `json:"video"`
-		VoteMetrics
-	} `json:"results"`
+	Results []Movie `json:"results"`
 }
 
 // TVAlternativeTitlesResults Result Types

@@ -9,31 +9,7 @@ import (
 
 // MovieDetails type is a struct for movie details JSON response.
 type MovieDetails struct {
-	Adult               bool                `json:"adult"`
-	BackdropPath        string              `json:"backdrop_path"`
-	BelongsToCollection BelongsToCollection `json:"belongs_to_collection"`
-	Budget              int64               `json:"budget"`
-	Genres              []Genre             `json:"genres"`
-	Homepage            string              `json:"homepage"`
-	ID                  int64               `json:"id"`
-	IMDbID              string              `json:"imdb_id"`
-	OriginalLanguage    string              `json:"original_language"`
-	OriginalTitle       string              `json:"original_title"`
-	Overview            string              `json:"overview"`
-	Popularity          float32             `json:"popularity"`
-	PosterPath          string              `json:"poster_path"`
-	OriginCountry       []string            `json:"origin_country"`
-	ProductionCompanies []ProductionCompany `json:"production_companies"`
-	ProductionCountries []ProductionCountry `json:"production_countries"`
-	ReleaseDate         string              `json:"release_date"`
-	Revenue             int64               `json:"revenue"`
-	Runtime             int                 `json:"runtime"`
-	SpokenLanguages     []SpokenLanguage    `json:"spoken_languages"`
-	Status              string              `json:"status"`
-	Tagline             string              `json:"tagline"`
-	Title               string              `json:"title"`
-	Video               bool                `json:"video"`
-	VoteMetrics
+	MovieDetailsItem
 	*MovieAlternativeTitlesAppend
 	*MovieChangesAppend
 	*MovieCreditsAppend

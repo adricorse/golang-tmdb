@@ -69,15 +69,14 @@ type PaginatedResultsMeta struct {
 
 // Season represents a TV show season with details such as air date, episode count, name, overview, poster path, season number, vote average, and associated show ID.
 type Season struct {
-	AirDate      string  `json:"air_date"`
-	EpisodeCount int     `json:"episode_count"`
 	ID           int64   `json:"id"`
 	Name         string  `json:"name"`
 	Overview     string  `json:"overview"`
 	PosterPath   string  `json:"poster_path"`
+	VoteAverage  float32 `json:"vote_average"`
+	AirDate      string  `json:"air_date"`
 	SeasonNumber int     `json:"season_number"`
-	VoteAverage  float32 `json:"vote_average,omitempty"`
-	ShowID       int64   `json:"show_id,omitempty"`
+	EpisodeCount int     `json:"episode_count"`
 }
 
 // LastEpisodeToAir represents the details of the most recently aired episode of a TV show.
@@ -142,4 +141,145 @@ type ImageBase struct {
 	Height      int     `json:"height"`
 	Width       int     `json:"width"`
 	VoteMetrics
+}
+
+type PersonBase struct {
+	Adult              bool    `json:"adult"`
+	ID                 int64   `json:"id"`
+	Name               string  `json:"name"`
+	OriginalName       string  `json:"original_name"`
+	Popularity         float32 `json:"popularity"`
+	Gender             int     `json:"gender"`
+	KnownForDepartment string  `json:"known_for_department"`
+	ProfilePath        string  `json:"profile_path"`
+}
+
+type Person struct {
+	PersonBase
+}
+
+type PersonResults struct {
+	PersonBase
+	MediaType string  `json:"media_type"`
+	KnownFor  []Media `json:"known_for"`
+}
+
+type Media interface {
+	GetMediaType() string
+}
+
+func (movie MovieMedia) GetMediaType() string { return movie.MediaType }
+func (tv TVShowMedia) GetMediaType() string   { return tv.MediaType }
+
+type CreditMedia interface {
+	GetMediaType() string
+}
+
+func (movie CreditMovieMedia) GetMediaType() string { return movie.MediaType }
+func (tv CreditTVShowMedia) GetMediaType() string   { return tv.MediaType }
+
+type CreditTVShowMedia struct {
+	TVShowMedia
+	Character string `json:"character"`
+}
+
+type CreditMovieMedia struct {
+	MovieMedia
+	Character string `json:"character"`
+}
+
+type Episode struct {
+	AirDate       string `json:"air_date"`
+	EpisodeNumber int64  `json:"episode_number"`
+	Name          string `json:"name"`
+	Overview      string `json:"overview"`
+	SeasonNumber  int    `json:"season_number"`
+	StillPath     string `json:"still_path"`
+}
+
+type VideoBase struct {
+	Adult            bool    `json:"adult"`
+	BackdropPath     string  `json:"backdrop_path"`
+	ID               int64   `json:"id"`
+	Overview         string  `json:"overview"`
+	PosterPath       string  `json:"poster_path"`
+	OriginalLanguage string  `json:"original_language"`
+	Popularity       float32 `json:"popularity"`
+	VoteMetrics
+}
+
+type MovieMeta struct {
+	Title         string `json:"title"`
+	OriginalTitle string `json:"original_title"`
+	ReleaseDate   string `json:"release_date"`
+	Video         bool   `json:"video"`
+}
+
+type Movie struct {
+	VideoBase
+	MovieMeta
+	GenreIDs []int64 `json:"genre_ids"`
+}
+
+type MovieMedia struct {
+	Movie
+	MediaType string `json:"media_type"`
+}
+
+type TVShowMeta struct {
+	Name          string         `json:"name"`
+	OriginalName  string         `json:"original_name"`
+	FirstAirDate  string         `json:"first_air_date"`
+	OriginCountry []string       `json:"origin_country"`
+	Episodes      []Episode      `json:"episodes"`
+	Seasons       []CreditSeason `json:"seasons"`
+}
+
+type TVShow struct {
+	VideoBase
+	TVShowMeta
+	GenreIDs []int64 `json:"genre_ids"`
+}
+
+type TVShowMedia struct {
+	TVShow
+	MediaType string `json:"media_type"`
+}
+
+type VideoDetails struct {
+	VideoBase
+	Genres              []Genre             `json:"genres"`
+	Homepage            string              `json:"homepage"`
+	ProductionCompanies []ProductionCompany `json:"production_companies"`
+	ProductionCountries []ProductionCountry `json:"production_countries"`
+	SpokenLanguages     []SpokenLanguage    `json:"spoken_languages"`
+	Status              string              `json:"status"`
+	Tagline             string              `json:"tagline"`
+}
+
+type MovieDetailsItem struct {
+	VideoDetails
+	MovieMeta
+	OriginCountry       []string            `json:"origin_country"`
+	BelongsToCollection BelongsToCollection `json:"belongs_to_collection"`
+	Budget              int64               `json:"budget"`
+	IMDbID              string              `json:"imdb_id"`
+	Revenue             int64               `json:"revenue"`
+	Runtime             int                 `json:"runtime"`
+}
+
+type TVShowDetailsItem struct {
+	VideoDetails
+	TVShowMeta
+	CreatedBy        []CreatedBy      `json:"created_by"`
+	EpisodeRunTime   []int            `json:"episode_run_time"`
+	InProduction     bool             `json:"in_production"`
+	Languages        []string         `json:"languages"`
+	LastAirDate      string           `json:"last_air_date"`
+	LastEpisodeToAir LastEpisodeToAir `json:"last_episode_to_air"`
+	NextEpisodeToAir NextEpisodeToAir `json:"next_episode_to_air"`
+	Networks         []Network        `json:"networks"`
+	NumberOfEpisodes int              `json:"number_of_episodes"`
+	NumberOfSeasons  int              `json:"number_of_seasons"`
+	Type             string           `json:"type"`
 }

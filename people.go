@@ -418,23 +418,9 @@ type PersonTaggedImages struct {
 	PaginatedResultsMeta
 	Results []struct {
 		ImageBase
-		Iso639_1  string `json:"iso_639_1"`
-		MediaType string `json:"media_type"`
-		Media     struct {
-			Popularity       float32 `json:"popularity"`
-			Video            bool    `json:"video"`
-			PosterPath       string  `json:"poster_path"`
-			ID               int64   `json:"id"`
-			Adult            bool    `json:"adult"`
-			BackdropPath     string  `json:"backdrop_path"`
-			OriginalLanguage string  `json:"original_language"`
-			OriginalTitle    string  `json:"original_title"`
-			GenreIDs         []int64 `json:"genre_ids"`
-			Title            string  `json:"title"`
-			Overview         string  `json:"overview"`
-			ReleaseDate      string  `json:"release_date"`
-			VoteMetrics
-		} `json:"media"`
+		Iso639_1  string     `json:"iso_639_1"`
+		MediaType string     `json:"media_type"`
+		Media     MovieMedia `json:"media"`
 	} `json:"results"`
 }
 
